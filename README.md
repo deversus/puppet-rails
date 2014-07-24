@@ -40,7 +40,7 @@ rails::app {'myapp':
 }
 ```
 
-This would set up a deploy directory for capistrano (using [`deversus-capistrano`](https://forge.puppetlabs.com/deversus/capistrano)), a `puma` web service named `myapp` (using [`deversus-puma`](https://forge.puppetlabs.com/deversus/puma)) and an `nginx` proxy for `the` puma service (using [`jfryman-nginx`](https://forge.puppetlabs.com/jfryman/nginx)) with the provided `$server_name` hostnames. Additionally, `rvm` would be installed (using [`maestrodev-rvm`](https://forge.puppetlabs.com/maestrodev/rvm)) and the `ruby-2.0.0-p0` environment added to it. The binary dependency packages would be installed for `rmagick` and `mysql` (e.g. `libmagickwand-dev`, `libmysqlclient-dev` ...), as well as a local `redis` service for `sidekiq` . `nodejs` will also be installed for the default Rails asset compilation. 
+This would set up a deploy directory for capistrano (using [`deversus-capistrano`](https://forge.puppetlabs.com/deversus/capistrano)), a puma web service named "myapp" (using [`deversus-puma`](https://forge.puppetlabs.com/deversus/puma)) and an nginx proxy for the puma service (using [`jfryman-nginx`](https://forge.puppetlabs.com/jfryman/nginx)) with the provided `$server_name` hostnames. Additionally, RVM would be installed (using [`maestrodev-rvm`](https://forge.puppetlabs.com/maestrodev/rvm)) and the `ruby-2.0.0-p0` environment added to it. The binary dependency packages would be installed for rmagick and mysql (e.g. `libmagickwand-dev`, `libmysqlclient-dev` ...), as well as a local redis service for sidekiq . Node.js will also be installed for the default Rails asset compilation. 
 
 ### Parameter Reference
 

@@ -1,6 +1,6 @@
 {
   "name": "deversus-rails",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Ruy Asan",
   "summary": "Highly configurable Rails deploys with common gem dependency management, capistrano and web server setup",
   "license": "MIT",
