@@ -79,6 +79,18 @@ define rails::app (
 		}
 	}
 
+	# Deploy-specific config for serving
+
+	case $deploy_using {
+		'capistrano': {
+			$app_root 		= join([sprintf($capistrano::deploy_dir_spf, $app_name), 'current'], '/')
+			$public_root 	= join([sprintf($capistrano::deploy_dir_spf, $app_name), 'current', 'public'], '/')
+		}
+		default: {
+			fail("Unknown deploy method: $deploy_using")
+		}
+	}
+
 	# Serving
 
 	case $serve_using {
@@ -103,7 +115,7 @@ define rails::app (
 		}
 	}
 
-	# Deploy
+	# Deploy prep
 
 	case $deploy_using {
 		'capistrano': {
@@ -111,15 +123,8 @@ define rails::app (
 				share_group => $share_group,
 				shared_dirs => $shared_dirs,
 			}
-
-			$app_root 		= join([sprintf($capistrano::deploy_dir_spf, $app_name), 'current'], '/')
-			$public_root 	= join([sprintf($capistrano::deploy_dir_spf, $app_name), 'current', 'public'], '/')
 		}
 		default: {
 			fail("Unknown deploy method: $deploy_using")
 		}
 	}
-
-	
-
-}
