@@ -1,0 +1,54 @@
+{
+  "name": "deversus-rails",
+  "version": "0.1.0",
+  "author": "Ruy Asan",
+  "summary": "Highly configurable Rails deploys with common gem dependency management, capistrano and web server setup",
+  "license": "MIT",
+  "source": "https://github.com/deversus/puppet-rails.git",
+  "project_page": "https://github.com/deversus/puppet-rails",
+  "issues_url": "https://github.com/deversus/puppet-rails/issues",
+  "tags": [
+    "rails",
+    "capistrano",
+    "puma",
+    "ruby",
+    "nginx",
+    "rvm",
+    "rmagick",
+    "sidekiq",
+    "redis",
+    "elasticsearch",
+    "mysql",
+    "nokogiri",
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian"
+    },
+    {
+      "operatingsystem": "Ubuntu"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_range": ">= 4.1.0"
+    },
+    {
+      "name": "deversus-capistrano",
+      "version_range": ">= 0.1.0"
+    },
+    {
+      "name": "deversus-puma",
+      "version_range": ">= 0.1.2"
+    },
+    {
+      "name": "jfryman-nginx",
+      "version_range": ">= 0.9.0"
+    },
+    {
+      "name": "maestrodev-rvm",
+      "version_range": ">= 1.5.5"
+    },
+  ]
+}
