@@ -1,6 +1,6 @@
 {
   "name": "deversus-rails",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "Ruy Asan",
   "summary": "Highly configurable Rails deploys with common gem dependency management, capistrano and web server setup",
   "license": "MIT",
@@ -32,23 +32,23 @@
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
-      "version_range": ">= 4.1.0"
+      "version_requirement": ">= 4.1.0"
     },
     {
       "name": "deversus-capistrano",
-      "version_range": ">= 0.1.0"
+      "version_requirement": ">= 0.1.1"
     },
     {
       "name": "deversus-puma",
-      "version_range": ">= 0.1.6"
+      "version_requirement": ">= 0.1.7"
     },
     {
       "name": "jfryman-nginx",
-      "version_range": ">= 0.9.0"
+      "version_requirement": ">= 0.9.0"
     },
     {
       "name": "maestrodev-rvm",
-      "version_range": ">= 1.5.5"
+      "version_requirement": ">= 1.5.5"
     }
   ]
 }

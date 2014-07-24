@@ -128,3 +128,4 @@ define rails::app (
 			fail("Unknown deploy method: $deploy_using")
 		}
 	}
+}
