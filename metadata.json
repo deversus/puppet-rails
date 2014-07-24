@@ -19,7 +19,7 @@
     "redis",
     "elasticsearch",
     "mysql",
-    "nokogiri",
+    "nokogiri"
   ],
   "operatingsystem_support": [
     {
@@ -49,6 +49,6 @@
     {
       "name": "maestrodev-rvm",
       "version_range": ">= 1.5.5"
-    },
+    }
   ]
 }
