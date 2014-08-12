@@ -55,6 +55,7 @@ Name of the database being used - will install any binary dependencies for the c
 Supported values:
 
 - `mysql` (default)
+- `postgresql`
 
 Patches welcome for additional database types.
 
@@ -78,6 +79,7 @@ A server or combination of servers to use to actually serve the app. These will 
 Supported values:
 
 - `nginx/puma` (default)
+- `worker-only` for worker queue nodes that don't need to run a web server
 
 Patches welcome for additional server types (`nginx/unicorn`? `apache/passenger`?).
 
@@ -104,6 +106,10 @@ Installs the XML/XSLT development packages required to compile the gem.
 ##### `elasticsearch => "$version"`
 
 Installs a local `elasticsearch` service (to use with `tire` et al).
+
+##### `yui => true`
+
+Installs the YUI compressor and its java dependencies.
 
 ###### Configuration Options
 

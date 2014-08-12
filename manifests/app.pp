@@ -45,7 +45,7 @@ define rails::app (
 		ensure_resource('service', $redis, {
 			ensure => 'running'
 		})
-		
+
 		Package[$redis]  -> Service[$redis] -> Anchor[$deps]
 	}
 
@@ -67,12 +67,23 @@ define rails::app (
 		} -> Anchor[$deps]
 	}
 
+	if 'yui' in $uses {
+		$yui_packages = ['yui-compressor']
+		ensure_packages($yui_packages)
+		Package[$yui_packages] -> Anchor[$deps]
+	}
+
 	# Db deps
 	case $db {
 		'mysql': {
 			$mysql = 'libmysqlclient-dev'
 			ensure_packages([$mysql])
 			Package[$mysql] -> Anchor[$deps]
+		}
+		'postgresql': {
+			$pgsql = 'libpq-dev'
+			ensure_packages([$pgsql])
+			Package[$pgsql] -> Anchor[$deps]
 		}
 		default: {
 			fail("Unknown db type: $db")
@@ -96,7 +107,7 @@ define rails::app (
 	case $serve_using {
 		'nginx/puma': {
 			$share_group = 'puma' # used by capistrano below
-			
+
 			puma::app {$app_name:
 				app_root => $app_root,
 				rvm_ruby => $ruby_version,
@@ -106,9 +117,30 @@ define rails::app (
 				server_name		=> $server_name,
 				public_root 	=> $public_root,
 				require			=> Puma::App[$app_name],
-				
 			}
 
+		}
+		'worker-only': {
+			$share_group = 'ubuntu'
+			# Do this manually, without the helper from puma
+			# TODO: move the helper out of puma?
+			if $ruby_version {
+				$rvm_ruby = $ruby_version
+			    ensure_resource('class', 'rvm')
+			    ensure_resource('rvm::system_user', 'ubuntu')
+			    ensure_resource('rvm_system_ruby', $rvm_ruby, {'ensure'=>'present'})
+
+			    Rvm::System_user[$share_group]
+			    -> Rvm_system_ruby[$rvm_ruby]
+			    -> rvm_gemset {"$rvm_ruby@$app_name":
+			        require => Rvm_system_ruby[$rvm_ruby],
+			        ensure  => present,
+			    }
+			    -> rvm_gem {"$rvm_ruby@$app_name/bundler":
+			        ensure  => present,
+			    }
+			    $ruby_exec_prefix = "/usr/local/rvm/bin/rvm $rvm_ruby@$app_name do "
+			}
 		}
 		default: {
 			fail("Unknown serving method: $serve_using")
