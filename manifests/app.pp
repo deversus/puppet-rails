@@ -38,6 +38,12 @@ define rails::app (
 		Package[$magick] -> Anchor[$deps]
 	}
 
+	if 'imagemagick' in $uses {
+		$imagemagick = 'imagemagick'
+		ensure_packages([$imagemagick])
+		Package[$imagemagick] -> Anchor[$deps]
+	}
+
 
 	if 'sidekiq' in $uses {
 		$redis = 'redis-server'
