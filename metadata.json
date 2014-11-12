@@ -1,7 +1,7 @@
 {
   "name": "deversus-rails",
   "version": "0.2.0",
-  "author": "Ruy Asan",
+  "author": "Deversus Software",
   "summary": "Highly configurable Rails deploys with common gem dependency management, capistrano and web server setup",
   "license": "MIT",
   "source": "https://github.com/deversus/puppet-rails.git",
